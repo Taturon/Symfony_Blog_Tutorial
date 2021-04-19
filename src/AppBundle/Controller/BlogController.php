@@ -26,7 +26,7 @@ class BlogController extends Controller
     }
 
     /**
-     * @Route("/{id}", name="blog_show")
+     * @Route("/{id}", name="blog_show", requirements={"id"="\d+"})
      */
     public function showAction($id)
     {
