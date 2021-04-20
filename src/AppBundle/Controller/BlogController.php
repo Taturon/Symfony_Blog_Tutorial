@@ -51,6 +51,18 @@ class BlogController extends Controller
             ->add('content')
             ->getForm();
 
+        // POST判定&バリデーション
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // エンティティを永続化
+            $post->setCreatedAt(new \DateTime());
+            $post->setUpdatedAt(new \DateTime());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+            return $this->redirectToRoute('blog_index');
+        }
+
         return $this->render('blog/new.html.twig', [
             'form' => $form->createView(),
         ]);
