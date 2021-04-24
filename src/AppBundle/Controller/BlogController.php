@@ -69,6 +69,13 @@ class BlogController extends Controller
     }
 
     /**
+     * @Route("/{id}/edit", name="blog_edit", requirements={"id"="\d+"})
+     */
+    public function editAction(Request $request, $id)
+    {
+    }
+
+    /**
      * @Route("/{id}/delete", name="blog_delete", requirements={"id"="\d+"})
      */
     function deleteAction($id)
