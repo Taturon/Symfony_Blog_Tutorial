@@ -80,6 +80,11 @@ class BlogController extends Controller
                 'No post found for id '.$id
             );
         }
+
+        $form = $this->createFormBuilder($post)
+            ->add('title')
+            ->add('content')
+            ->getForm();
     }
 
     /**
