@@ -73,6 +73,13 @@ class BlogController extends Controller
      */
     public function editAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $post = $em->getRepository(Post::class)->find($id);
+        if (!$post) {
+            throw $this->createNotFoundException(
+                'No post found for id '.$id
+            );
+        }
     }
 
     /**
