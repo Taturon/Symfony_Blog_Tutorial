@@ -94,6 +94,12 @@ class BlogController extends Controller
 
             return $this->redirectToRoute('blog_index');
         }
+
+        // 新規作成するときと同じテンプレートを利用
+        return $this->render('blog/new.html.twig', [
+            'post' => $post,
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
