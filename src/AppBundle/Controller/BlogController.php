@@ -85,6 +85,15 @@ class BlogController extends Controller
             ->add('title')
             ->add('content')
             ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // フォームから送信されてきた値と一緒に更新日時も更新して保存
+            $post->setUpdatedAt(new \DateTime());
+            $em->flush();
+
+            return $this->redirectToRoute('blog_index');
+        }
     }
 
     /**
